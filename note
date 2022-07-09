@@ -1,0 +1,76 @@
+            Angular - Front end development
+
+
+            Basic commands
+
+            1. to create project - ng new project name
+            2. to run a project  - ng serve/  ng serve --open
+            3. to create component - ng g c component name
+            4.to create service - [-ng g s service name
+
+
+            Basic concepts
+
+         1. component - to create HTML, css, typescript, file
+                root component - Appcomponent
+
+         2. Module - to add libreries to the project 
+                root module  - Appmodule
+         3. Data Binding    - data sharing between html and ts
+                types   :
+                    1. One way binding  :
+                        1.1 component to view (TS to HTML)
+                            Methods using
+
+                            >String Interpolation : syntax - {{variable name}}
+                            >Property Binding  : binding html tag attributes : syntax - [attribute]="variable name"
+                        1.2 view to component (HTML to TS)
+                            methods
+                            >Event binding : syntax : (event)="function call()
+
+                            >Event binding : syntax : (event)="function call($event) //$event is the details of the elements that we want to bind.
+                                                                                        the $event is passed to the TS file
+                            >Template referencing variables -     syntax: #variable name 
+                                                                pass these variable names in the function                                                       
+
+                    2. two way binding  -
+                            2.1 using ngmodel - import formsmodule in Appmodule  
+                            syntax : [(ngModel)]="variable-name"         
+                            value is assigned to the class variables
+
+        4. To set up path for a component   : defined in approutingmodule
+            syntax: (path:'',component:componentClassname)
+            for creating next page give routerLink,
+            >> to redirect from one page to another is navigate by URL and in javascript it is window.location
+
+            >> router outlet selector set in the appcomponent.html 
+
+        5. Dependency injection : data sharing between 2 different classes, done in constructors
+
+        Need to design the register html page. copied the login html content and edit it by adding username field
+
+    6.Angular services  - for redundant data holding (reuse data)
+
+    7. ngSubmit- to submit entire form  syntax: (ngSubmit)="function-call"                    
+
+    8. Angular forms (validating the inputs which is entered by user)
+        8.1 Template Driven forms - design html
+            >> html page
+
+        8.2 Model driven forms - create model in ts
+            >> values are stored in variables in model not in the class variables
+            >>creating a model in the ts file and link it to the html page
+            >>values entered in html is saved in the model forms
+            >>validation will be easier
+
+            8.2.1 Reactive forms - Add inbuilt validations: import library- ReactiveFormsModule  in appModule
+
+                a reactive should have 
+                - class Form builder 
+                - Dependency inject from the formbuilder class :Form group, Form array, Form control in the ts file
+
+            >>to bind html to model formcontrolName attribute is used instead of ngModel
+
+
+
+
