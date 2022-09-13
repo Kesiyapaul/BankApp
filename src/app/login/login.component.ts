@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 
@@ -14,13 +15,17 @@ export class LoginComponent implements OnInit {
   accno ="Account Number please"
   acno=""
   pswd=""
+  loginform = this.fb.group({
+    acno: ['',[Validators.required,Validators.pattern('[0-9]*')]],
+    pswd : ['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*')]]
+  })
   //database
  
 
   // dependency injection : navigat by url function is predefined in the Router class so it is privately accessed by access identifier
   // so now we can access functions in Router.
   // router is the variable name instance of login component- login and dashboard is depended
-  constructor(private router:Router, private ds:DataService) { }
+  constructor(private router:Router, private ds:DataService,private fb:FormBuilder) { }
 
   ngOnInit(): void {
   }
@@ -31,14 +36,20 @@ export class LoginComponent implements OnInit {
 
 login()
 {
-  var acno = this.acno
-  var pswd = this.pswd
+  var acno = this.loginform.value.acno
+  var pswd = this.loginform.value.pswd
+
+  if(this.loginform.valid){
   const result = this.ds.login(acno,pswd)
   if(result)
   {
       alert("login successfull")
       this.router.navigateByUrl('dashboard')
     }
+}
+else{
+  alert("invalid form")
+}
 }
 //template reference
 

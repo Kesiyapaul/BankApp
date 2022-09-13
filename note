@@ -6,15 +6,17 @@
             1. to create project - ng new project name
             2. to run a project  - ng serve/  ng serve --open
             3. to create component - ng g c component name
-            4.to create service - [-ng g s service name
-
+            4. to create service - ng g s service name
+            5. to create directives - ng g d directive name
+            6. to build Angular application - ng build --prod
 
             Basic concepts
+            decorators stores a data in another data
 
          1. component - to create HTML, css, typescript, file
                 root component - Appcomponent
 
-         2. Module - to add libreries to the project 
+         2. Module - to add libraries to the project 
                 root module  - Appmodule
          3. Data Binding    - data sharing between html and ts
                 types   :
@@ -71,6 +73,48 @@
 
             >>to bind html to model formcontrolName attribute is used instead of ngModel
 
+    9. Angular directives- to manipulate document objective Model (DOM)    
+        
+        DOM- entire html, css, javascript view
 
+            9.1  Component Directives - in angular html view is changed by using component
+
+            9.2 structural directives - change the DOM structure based on a condition, by adding or removing html elements
+
+                9.2.1. ngIf - based on condition html changing
+                            syntax - *ngIf="condition" which is given on the html tag that needs to be change
+
+                9.2.2. ngFor - displaying a loop as a for loop  
+                            syntax - *ngFor="let iterator of array name"          
+           
+            9.3 Attribute directives - to apply set of style to html    
+                9.3.1 Predifined -based on a condition eg:ngclass
+
+                9.3.2 Userdefined -        
+   
+    10. Local storage - to permanently store data in browser
+        10.1 to store - setItem()
+
+        10.2 to get the data - getItem()
+
+        10.3 to remove the data - removeItem()
+
+    11. Angular pipes - to convert the input data forms
+            syntax : expression | pipe operator : 'pipe Arguments'
+
+    12. Animation
+
+    13.parent - child communication
+
+            13.1- parent to child communication- Input decerator
+
+            13.2 - child to parent communication - Output decerator
+
+    14.Event Emitter - to generate user defined events
+
+        14.1 emit() - to occur the event        
+
+
+    15. User defined directives- to highlight or style certain tags or content 
 
 

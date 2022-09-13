@@ -4,37 +4,63 @@
     <span class="quote text-light">Giving you freedom...</span>
   </nav>
   <!-- <h1>{{aim}}</h1> -->
-<h1 style="color:white ;">Welcome User</h1>  
-  <div class="container col-md-12 mt-0">
+<h1 style="color:white ;">Welcome {{user}}</h1> 
+
+<!-- angular pipe -->
+<h5 style="color: white;">{{ldate|date:'short'}}</h5> 
+<button class="btn btn-warning" (click)="logout()" style="float: right; margin-right: 20px;">Log Out</button>
+<br>
+<hr>
+<button class="btn btn-danger" (click)="deleteaccount()" style="float: right; margin-right: 20px;">DELETE</button>
+
+<!-- <app-animation></app-animation> -->
+<!-- child property item id binded to parent's selector. here parent is dashboard and child is delete -->
+<app-delete (oncancel)="cancel()" [item]="dacno"></app-delete>
+<hr>
+<br>
+<a routerLink="/transaction">View Transaction History</a>
+  <div [ngClass]="dacno?'c1':'' " class="container col-md-12 mt-0">
     <div class="d-flex justify-content-center h-100">
         <div class="card">
             <div class="card-header">
-                <h3 class="text-center">Deposit form </h3>
+                <h3 appHighlight class="text-center">Deposit form </h3>
                 
             </div>
             <div class="card-body">
-                <form (ngSubmit)="deposit()" >
+                <form [formGroup]="depositform" (ngSubmit)="deposit()" >
                   
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="acno" [(ngModel)]="acno" placeholder="Account number" id="login_accno" required>
+                        <input type="text" class="form-control" name="acno" formControlName="acno" placeholder="Account number" id="login_accno" required>
                         <!--[placeholder]="accno" property binding[] -->
                     </div>
+                    <div *ngIf="this.depositform.get('acno')?.touched&&this.depositform.get('acno')?.errors" style="color: blue;">Invalid acno
+
+                    </div>
+
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                          </div>
-                        <input type="password" class="form-control" name="pswd" [(ngModel)]="pswd" placeholder="password" id="login_password" required>
+                        <input type="password" class="form-control" name="pswd" formControlName="pswd" placeholder="password" id="login_password" required>
                     </div>
+                    <div *ngIf="this.depositform.get('pswd')?.touched&&this.depositform.get('pswd')?.errors" style="color: blue;">Invalid password
+
+                    </div>
+
                     <div class="input-group form-group">
                       <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-user"></i></span>
                       </div>
-                      <input type="text" class="form-control" name="amount" [(ngModel)]="amount" placeholder="Amount" id="login_user" required>
+                      <input type="text" class="form-control" name="amount" formControlName="amount" placeholder="Amount" id="login_user" required>
                       <!--[placeholder]="accno" property binding[] -->
                   </div>
+                  <div *ngIf="this.depositform.get('amount')?.touched&&this.depositform.get('amount')?.errors" style="color: blue;">Invalid amount
+
+                </div>
+
 
                     <div class="form-group">
                         <input type="submit" value="Deposit"  class="btn float-right login_btn " style="width:50%" >
@@ -45,36 +71,47 @@
     </div>
 </div>
 
-<div class="container col-md-12 mt-0">
+<div [ngClass]="dacno?'c1':'' " class="container col-md-12 mt-0">
     <div class="d-flex justify-content-center h-100">
         <div class="card">
             <div class="card-header">
-                <h3 class="text-center">Withdrawal form </h3>
+                <h3 appHighlight class="text-center">Withdrawal form </h3>
                 
             </div>
             <div class="card-body">
-                <form (ngSubmit)="withdraw()">
+                <form [formGroup]="withdrawform" (ngSubmit)="withdraw()">
                   
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="acno1" [(ngModel)]="acno1" placeholder="Account number" id="login_accno1" required>
+                        <input type="text" class="form-control" name="acno" formControlName="acno" placeholder="Account number" id="login_accno1" required>
                         <!--[placeholder]="accno" property binding[] -->
                     </div>
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
-0                          </div>
-                        <input type="password" class="form-control" name="pswd1" [(ngModel)]="pswd1" placeholder="password" id="login_password1" required>
+                    <div *ngIf="this.withdrawform.get('acno')?.touched&&this.withdrawform.get('acno')?.errors" style="color: blue;">Invalid acno
+
                     </div>
+                    <div class="input-group form-group">
+                       <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                         </div>
+                        <input type="password" class="form-control" name="pswd" formControlName="pswd" placeholder="password" id="login_password1" required>
+                    </div>
+                    <div *ngIf="this.withdrawform.get('pswd')?.touched&&this.withdrawform.get('pswd')?.errors" style="color: blue;">Invalid password
+
+                    </div>
+
                     <div class="input-group form-group">
                       <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-user"></i></span>
                       </div>
-                      <input type="text" class="form-control" name="amount1" [(ngModel)]="amount1" placeholder="Amount" id="login_user1" required>
+                      <input type="text" class="form-control" name="amount" formControlName="amount" placeholder="Amount" id="login_user1" required>
                       <!--[placeholder]="accno" property binding[] -->
                   </div>
+                  <div *ngIf="this.withdrawform.get('amount')?.touched&&this.withdrawform.get('amount')?.errors" style="color: blue;">Invalid amount
+
+                </div>
+
 
                     <div class="form-group">
                         <input type="submit" value="Withdraw" class="btn float-right login_btn " style="width:50%" >
